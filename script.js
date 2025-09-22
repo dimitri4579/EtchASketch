@@ -10,8 +10,10 @@ const rainbowColors = [
     '#00FF00', // Green
     '#0000FF', // Blue
     '#4B0082', // Indigo
-    '#9400D3'  // Violet
+    '#9400D3', // Violet
+    '#FC0FC0'  // Pink
 ];
+
 function getRandomColor() {
     const randomIndex = Math.floor(Math.random() * rainbowColors.length);
     return rainbowColors[randomIndex];
@@ -23,9 +25,16 @@ function createNewGrid(size) {
     for (let i = 0; i < size*size; i++) {
         const square = document.createElement('div');
         square.classList.add('grid-square');
-        square.setAttribute("style", `width: ${width}px; height: ${height}px`);
+        square.style.backgroundColor = "white";
+        square.style.opacity = "0";
+        square.style.width = `${width}px`;
+        square.style.height = `${height}px`;
+        
         square.addEventListener('mouseover', () => {
             square.style.backgroundColor = getRandomColor();
+            let opacity = square.style.opacity;
+            opacity = parseFloat(opacity) + 0.1;
+            square.style.opacity = String(opacity);
         });
         container.appendChild(square);
     }
@@ -50,6 +59,7 @@ reset.addEventListener("click", () => {
     const squares = document.querySelectorAll(".grid-square");
     squares.forEach(square => {
         square.style.backgroundColor = "white";
+        square.style.opacity = "0";
         
     })
 })
