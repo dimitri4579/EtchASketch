@@ -7,11 +7,14 @@ body {
 }
 
 .container {
-    display: grid;
+    display: flex;
     /* gap: 1px; */
-    width: 500px;
-    height: 500px;
+    flex-wrap: wrap;
+    width: 450px;
+    height: 450px;
     border: 2px solid #333;
+    justify-content: space-between;
+    align-content: space-between;
 
 }
 
@@ -20,4 +23,10 @@ body {
     background-color: white;
     width: 25px;
     height: 25px;
+}
+
+#reset {
+    margin-top: 25px;
+    padding: 8px;
+    background-color: cornsilk;
 }

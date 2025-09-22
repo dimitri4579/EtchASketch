@@ -19,14 +19,28 @@ function getRandomColor() {
     return rainbowColors[randomIndex];
 }
 
-container.style.gridTemplateColumns = `repeat(${COLS}, 1fr)`;
-container.style.gridTemplateRows = `repeat(${ROWS}, 1fr)`;
+// container.style.gridTemplateColumns = `repeat(${COLS}, 1fr)`;
+// container.style.gridTemplateRows = `repeat(${ROWS}, 1fr)`;
 
-for (let i = 0; i < ROWS * COLS; i++) {
-    const square = document.createElement('div');
-    square.classList.add('grid-square');
-    square.addEventListener('mouseover', () => {
-        square.style.backgroundColor = getRandomColor();
-    });
-    container.appendChild(square);
+function createNewGrid() {
+    for (let i = 0; i < ROWS * COLS; i++) {
+        const square = document.createElement('div');
+        square.classList.add('grid-square');
+        square.addEventListener('mouseover', () => {
+            square.style.backgroundColor = getRandomColor();
+        });
+        container.appendChild(square);
+    }
 }
+
+createNewGrid();
+
+
+const reset = document.getElementById('reset')
+
+reset.addEventListener("click", () => {
+    const squares = document.querySelectorAll(".grid-square");
+    squares.forEach(square => {
+        square.setAttribute("style", "background: white");
+    })
+})
