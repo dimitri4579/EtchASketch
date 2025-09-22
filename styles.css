@@ -1,0 +1,23 @@
+body {
+    display: flex;
+    background-color: #f5f5f5;;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    display: grid;
+    /* gap: 1px; */
+    width: 500px;
+    height: 500px;
+    border: 2px solid #333;
+
+}
+
+.grid-square {
+    border: 1px solid #eee;
+    background-color: white;
+    width: 25px;
+    height: 25px;
+}
