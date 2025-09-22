@@ -46,20 +46,28 @@ const size = document.getElementById("size");
 
 size.addEventListener("click", () => {
     const newSize = prompt("What size do you want the board? (size must be within the range 1 - 100)", "16");
-    const squares = document.querySelectorAll(".grid-square");
-    squares.forEach(square => {
-        square.remove();
-    });
-    createNewGrid(parseInt(newSize));
+    if (newSize === null) {
+        eraseGrid();
+    } else {
+        const squares = document.querySelectorAll(".grid-square");
+        squares.forEach(square => {
+            square.remove();
+        });
+        createNewGrid(parseInt(newSize));
+    }
+    
 })
 
 const reset = document.getElementById('reset')
 
-reset.addEventListener("click", () => {
+function eraseGrid() {
     const squares = document.querySelectorAll(".grid-square");
     squares.forEach(square => {
         square.style.backgroundColor = "white";
         square.style.opacity = "0";
-        
     })
+}
+
+reset.addEventListener("click", () => {
+    eraseGrid();
 })
