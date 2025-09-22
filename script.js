@@ -1,8 +1,7 @@
-
 const container = document.querySelector(".container");
 
-const ROWS = 16;
-const COLS = 16;
+const WIDTH = 600;
+const HEIGHT = 600;
 
 const rainbowColors = [
     '#FF0000', // Red
@@ -13,19 +12,18 @@ const rainbowColors = [
     '#4B0082', // Indigo
     '#9400D3'  // Violet
 ];
-// const randomIndex = Math.floor(Math.random() * rainbowColors.length);
 function getRandomColor() {
     const randomIndex = Math.floor(Math.random() * rainbowColors.length);
     return rainbowColors[randomIndex];
 }
 
-// container.style.gridTemplateColumns = `repeat(${COLS}, 1fr)`;
-// container.style.gridTemplateRows = `repeat(${ROWS}, 1fr)`;
-
-function createNewGrid() {
-    for (let i = 0; i < ROWS * COLS; i++) {
+function createNewGrid(size) {
+    const width = WIDTH / size;
+    const height = HEIGHT / size;
+    for (let i = 0; i < size*size; i++) {
         const square = document.createElement('div');
         square.classList.add('grid-square');
+        square.setAttribute("style", `width: ${width}px; height: ${height}px`);
         square.addEventListener('mouseover', () => {
             square.style.backgroundColor = getRandomColor();
         });
@@ -33,14 +31,25 @@ function createNewGrid() {
     }
 }
 
-createNewGrid();
+createNewGrid(16);
 
+const size = document.getElementById("size");
+
+size.addEventListener("click", () => {
+    const newSize = prompt("What size do you want the board? (size must be within the range 1 - 100)", "16");
+    const squares = document.querySelectorAll(".grid-square");
+    squares.forEach(square => {
+        square.remove();
+    });
+    createNewGrid(parseInt(newSize));
+})
 
 const reset = document.getElementById('reset')
 
 reset.addEventListener("click", () => {
     const squares = document.querySelectorAll(".grid-square");
     squares.forEach(square => {
-        square.setAttribute("style", "background: white");
+        square.style.backgroundColor = "white";
+        
     })
 })
